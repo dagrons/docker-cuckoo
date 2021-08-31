@@ -78,6 +78,7 @@ RUN apk add --update --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto 
   && pip install pip==9.0.3 remotevbox==0.2.0 \
   && pip install pyrsistent==0.16.1 \
   && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
+  && pip install werkzeug==0.16.1 \
   && cuckoo
 
 RUN cuckoo community \
