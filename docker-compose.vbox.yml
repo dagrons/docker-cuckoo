@@ -12,7 +12,7 @@ services:
       - "2042:2042"
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp-cuckoo/
-      - /mnt/cuckoo-storage/:/cuckoo/storage/
+      - cuckoo-storage/:/cuckoo/storage
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
       - ./vbox/config-file.env
@@ -33,7 +33,7 @@ services:
     command: web
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp-cuckoo/
-      - /mnt/cuckoo-storage/:/cuckoo/storage/
+      - cuckoo-storage:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
       - ./vbox/config-file.env
@@ -52,7 +52,7 @@ services:
     command: api
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp-cuckoo/
-      - /mnt/cuckoo-storage/:/cuckoo/storage/
+      - cuckoo-storage:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
       - ./vbox/config-file.env
@@ -79,5 +79,26 @@ services:
 
 volumes:
   mongo-data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/dagongren/share/mongo-data"
   es-data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/dagongren/share/es-data"
   postgres-data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/dagongren/share/postgres-data"
+  cuckoo-storage:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/dagongren/share/cuckoo-storage"
