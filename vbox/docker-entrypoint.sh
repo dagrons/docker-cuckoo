@@ -124,7 +124,8 @@ if [ "$1" = 'daemon' ]; then
   cd /cuckoo
   rm -rf pidfiles/*.pid
 
-  su-exec cuckoo cuckoo -d "$@"
+  supervisord -c ./conf/supervisord.conf   
+  supervisorctl tail -f cuckoo:cuckoo-daemon stderr "$@"
 
 elif [ "$1" = 'submit' ]; then
   shift

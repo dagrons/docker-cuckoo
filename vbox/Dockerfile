@@ -88,6 +88,8 @@ RUN cuckoo community \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
+RUN apk add --no-cache supervisor
+
 COPY 2.0/conf /cuckoo/conf
 COPY 2.0/update_conf.py /update_conf.py
 COPY vbox/docker-entrypoint.sh /entrypoint.sh
