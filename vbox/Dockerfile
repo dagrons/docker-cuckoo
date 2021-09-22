@@ -109,4 +109,7 @@ ADD https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/common/config.py 
 RUN chmod 644 $CUCKOO_PACKAGE_PATH/common/config.py \
               $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
 
+RUN rm /usr/lib/python2.7/site-packages/cuckoo/core/database.pyc \
+  && sed -i 's/machine = machines.filter_by(locked=False).first()/machine = machines.filter_by(locked=False).with_for_update().first()/g' /usr/lib/python2.7/site-packages/cuckoo/core/database.py
+
 ENTRYPOINT ["/entrypoint.sh"]
