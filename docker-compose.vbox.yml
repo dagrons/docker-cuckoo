@@ -24,7 +24,7 @@ services:
       args:
         - CUCKOO_UID=1000
     ports:
-      - "80:31337"
+      - "81:31337"
     depends_on:
       - mongo
       - elasticsearch
@@ -83,22 +83,22 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/dagongren/share/mongo-data"
+      device: "/data/docker-cuckoo/mongo-data"
   es-data:
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/dagongren/share/es-data"
+      device: "/data/docker-cuckoo/es-data"
   postgres-data:
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/dagongren/share/postgres-data"
+      device: "/data/docker-cuckoo/postgres-data"
   cuckoo-storage:
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/dagongren/share/cuckoo-storage"
+      device: "/data/docker-cuckoo/cuckoo-storage"
