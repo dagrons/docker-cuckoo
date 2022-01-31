@@ -23,7 +23,7 @@ RUN apk add --update --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto 
   libpq \
   py-pip \
   shadow \
-  && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U \
+  && pip install pip -U \
   && pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
   && pip install --upgrade wheel \
   && pip install psycopg2 \
