@@ -74,11 +74,12 @@ RUN apk add --update --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto 
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade wheel setuptools \
-  && python -m pip install -U pip \
   && pip install pip==9.0.3 remotevbox==0.2.0 \
   && pip install pyrsistent==0.16.1 \  
+  && pip install jsonschema==3.2.0 \
   && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
   && pip install werkzeug==0.16.1 \
+  && pip install -U pip \
   && cuckoo
 
 RUN cuckoo community \
