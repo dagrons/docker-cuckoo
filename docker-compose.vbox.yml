@@ -2,6 +2,7 @@ version: "2"
 
 services:
   cuckoo:
+    restart: on-failure:5
     depends_on:
       - mongo
       - elasticsearch
@@ -22,6 +23,7 @@ services:
       - ./vbox/config-file.env
 
   web:
+    restart: on-failure:5
     build:
       dockerfile: vbox/Dockerfile
       context: .
@@ -43,6 +45,7 @@ services:
       - ./vbox/config-file.env
 
   api:
+    restart: on-failure:5
     depends_on:
       - mongo
       - elasticsearch
