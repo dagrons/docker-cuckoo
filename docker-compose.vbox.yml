@@ -2,6 +2,10 @@ version: "2"
 
 services:
   cuckoo:
+    depends_on:
+      - mongo
+      - elasticsearch
+      - postgres
     build:
       dockerfile: vbox/Dockerfile
       context: .
@@ -24,7 +28,7 @@ services:
       args:
         - CUCKOO_UID=1000
     ports:
-      - "80:31337"
+      - "81:31337"
     depends_on:
       - mongo
       - elasticsearch
@@ -40,6 +44,8 @@ services:
 
   api:
     depends_on:
+      - mongo
+      - elasticsearch
       - postgres
       - cuckoo
     build:
