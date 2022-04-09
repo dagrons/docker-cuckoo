@@ -1,0 +1,12 @@
+[Unit]
+Description=Setup VirtualBox Hostonly Adapter
+After=vboxdrv.service
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/opt/systemd/system/vboxhostonly
+
+[Install]
+WantedBy=multi-user.target

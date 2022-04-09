@@ -1,0 +1,12 @@
+[Unit]
+Description=Vbox Web Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=dell
+ExecStart=/usr/bin/vboxwebsrv --host 0.0.0.0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

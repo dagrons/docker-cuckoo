@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup docker-cuckoo iptables rules
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/opt/systemd/system/load-iptables
+
+[Install]
+WantedBy=multi-user.target

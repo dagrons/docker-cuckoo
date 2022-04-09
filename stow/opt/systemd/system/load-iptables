@@ -1,0 +1,18 @@
+#!/bin/bash
+
+iptables -t nat -A POSTROUTING -o eth0 -s 192.168.56.0/24 -j MASQUERADE
+
+# Default drop.
+iptables -P FORWARD DROP
+
+# Existing connection
+iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# Accept connections from vboxnet to the whole internet.
+iptables -A FORWARD -s 192.168.56.0/24 -j ACCEPT
+
+# Internal traffic.
+iptables -A FORWARD -s 192.168.56.0/24 -d 192.168.56.0/24 -j ACCEPT
+
+# Log stuff that reaches this point (could be noisy).
+iptables -A FORWARD -j LOG
