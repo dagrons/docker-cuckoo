@@ -12,7 +12,7 @@ services:
       - "2042:2042"
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp-cuckoo/
-      - ./cuckoo-storage/:/cuckoo/storage
+      - /mnt/cuckoo-storage/:/cuckoo/storage
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
       - ./vbox/config-file.env
@@ -33,7 +33,7 @@ services:
     command: web
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp-cuckoo/
-      - ./cuckoo-storage:/cuckoo/storage/
+      - /mnt/cuckoo-storage:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
       - ./vbox/config-file.env
@@ -52,7 +52,7 @@ services:
     command: api
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp-cuckoo/
-      - ./cuckoo-storage:/cuckoo/storage/
+      - /mnt/cuckoo-storage:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
       - ./vbox/config-file.env
